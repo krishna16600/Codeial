@@ -6,6 +6,9 @@ const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 const session = require('express-session');
 
+//mongo store requires an argument(session) because we need to put session information in the database 
+const MongoStore = require('connect-mongo')(session);
+ 
 //used for session cookie
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
@@ -32,6 +35,7 @@ app.set('view engine' , 'ejs');
 app.set('views' , './views');
 
 
+// mongo store is used to store the session cookie in the Database
 app.use(session({
     name: 'codeial',
     //todo, change the secret before deployment
@@ -40,7 +44,14 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: 1000*60*100,
-    }
+    },
+    store: new MongoStore({
+
+            mongooseConnection: db,
+            autoRemove: 'disabled'
+    }, (err) => {
+        console.log(err || 'connect-mongoose setup ok');
+    })
 }))
 
 
