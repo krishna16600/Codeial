@@ -1,9 +1,39 @@
 <link rel="stylesheet" href="/css/user_profile.css">        
-        <h1>
-                Welcome , <%= title %> 
-        </h1>
-        
-        
-        <p><%= user.name %></p>
-        <p><%= user.email %></p>
+      
+<div class="container-fluid">
+       <div class="container-fluid d-flex mt-5" id="topProfileContainer"> 
+                <div class="container" style="border: 1px solid black;" id="photoContainer">
+                        <h1>
+                                <% if(locals.user) { %>
+                                       <h1> <%= user.name %> </h1>
+                                       <h1> <%= user.email %> </h1>
+
+                                 <% } else { %>
+                                        <h1>Please sign in</h1>
+                                <% } %>
+                        </h1>
+                </div>
+                <div class="container" style="border: 1px solid red;">
+                        <h1>Here user's friend count, post count will come</h1>
+                </div>
+        </div>
+        <div class="container d-flex mt-3">
+                <div class="container" id="allFriends">
+                        <h3>Here all friends will be shown</h3>
+                </div>
+                <div class="container" id="postShow">
+                        <h3>Here all posts will be shown</h3>
+                </div>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 

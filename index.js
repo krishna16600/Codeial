@@ -5,6 +5,7 @@ const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 const session = require('express-session');
+const sassMiddleware = require('node-sass-middleware');
 
 //mongo store requires an argument(session) because we need to put session information in the database 
 const MongoStore = require('connect-mongo')(session);
@@ -12,6 +13,17 @@ const MongoStore = require('connect-mongo')(session);
 //used for session cookie
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+
+
+app.use(sassMiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'expanded',
+    prefix: '/css'
+}))
+
+app.use('/css',express.static('./node_modules/bootstrap/dist/css'));
 
 //for post requests
 app.use(express.urlencoded());
