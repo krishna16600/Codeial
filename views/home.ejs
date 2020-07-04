@@ -1,3 +1,37 @@
-<h1>
-    Welcome <%= title %>
-</h1>
+
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col col-md-2 col-sm-4">
+            <h1>groups</h1>
+        </div>
+        <div class="col col-md-8 col-sm-4" >
+          
+            <div class="container mt-5">
+                <div class="container d-flex justify-content-center">
+                    <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" class="rounded-circle" width="70px" height="60px" alt="Image" class="mr-3">
+                    <form action="/posts/create" method="POST">
+                        <div class="form-group">
+                            <textarea class="form-control" name="content" id="" cols="90" rows="2" placeholder="What's on your mind,?"></textarea>
+                        </div>
+                        <button class="btn btn-success btn-block btn-sm">Post</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container mt-3 mx-auto">
+               <% for(post of posts) { %>
+                    <div class="container m-2 p-2" style="border: 1px solid grey;">
+                       <h3 style="text-transform: capitalize;"><%= post.user.name %></h3>
+
+                       <h5 class="ml-2"><%= post.content %></h5>
+
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="col col-md-2 col-sm-4" >
+            <h3 class="text-center">Friend List</h3>
+        </div>
+    </div>
+</div>

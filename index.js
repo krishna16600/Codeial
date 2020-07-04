@@ -18,7 +18,7 @@ const passportLocal = require('./config/passport-local-strategy');
 app.use(sassMiddleware({
     src: './assets/scss',
     dest: './assets/css',
-    debug: true,
+    debug: false,
     outputStyle: 'expanded',
     prefix: '/css'
 }))
