@@ -3,7 +3,14 @@ const Post = require('../models/post');
 module.exports.posts = (req,res) => {
    
     //populate the user of each post
-    Post.find({}).populate('user').exec((err,posts) => {
+    Post.find({}).populate('user')
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'user'
+        }
+    }) 
+    .exec((err,posts) => {
         return res.render('home', {
             title: 'Codeial | News-Feed',
             posts: posts

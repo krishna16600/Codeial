@@ -9,8 +9,8 @@ router.use('/users', require('./users'));
 
 //for any other routes, access from here
 // router.use('/routerName', require('filename'))
-router.use('/posts',require('./posts'))
-
+router.use('/posts',require('./posts'));
+router.use('/comments', require('./comments'));
 
 
 
