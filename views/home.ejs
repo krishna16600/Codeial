@@ -26,6 +26,11 @@
 
                        <h5 class="ml-5"><%= post.content %></h5>
 
+                       <% if(locals.user && locals.user.id == post.user.id){ %>
+                       <small>
+                           <a href="/posts/destroy/<%= post.id %>" class="btn btn-danger btn-sm "> Delete Post</a>
+                       </small>
+                       <% } %>
                        <div class="container mt-2">
                            <h5>Comments: </h5>
                          

@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const Comment = require('../models/comment');
 
 module.exports.posts = (req,res) => {
    
@@ -33,5 +34,29 @@ module.exports.create = (req,res) => {
         console.log(post);
         
         return res.redirect('back');
+    })
+}
+
+
+module.exports.destroy = (req,res) => {
+    Post.findById(req.params.id, (err,post) => {
+        
+        //if found and check if user is same as author
+        //when comparing two id's , we need to convert it into strings, ideally it should be req.user._id but it's an object and we need
+        // to convert it into string. mongoose provides us the functionality and we can simply write as below
+        if(post.user == req.user.id){
+                post.remove();
+
+                //.deletMany() will delete all records
+                Comment.deleteMany({post: req.params.id} , (err) => {
+                    if(err){
+                        return res.redirect('back');
+                    }
+                })
+
+                return res.redirect('back');
+        }
+        else 
+            return res.redirect('back');
     })
 }
