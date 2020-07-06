@@ -69,3 +69,25 @@ module.exports.destroySession = (req,res) => {
     req.logout();
     return res.redirect('/');
 }
+
+module.exports.updateProfile = (req, res) => {
+
+    User.findById(req.params.id , (err,user) => {
+        if(user) {
+            return res.render('user_profile', {
+                title: "User-Profile",
+                user_profile: user
+            })
+        }
+    })
+}
+
+module.exports.updateDetails = (req,res) => {
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id , req.body, (err, user) => {
+            return res.redirect('back');
+        })
+    } else{
+        res.status(401).send('Unauthorized');
+    }
+}

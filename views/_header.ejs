@@ -5,7 +5,7 @@
         <ul class="navbar-nav ml-auto">
             <% if(locals.user) {%>
                 <li class="nav-item">
-                    <a href="/users/profile" class="nav-link ">
+                    <a href="/users/profile/<%= user.id %>" class="nav-link ">
                         <%= user.name %>
                     </a>
                 </li>

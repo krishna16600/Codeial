@@ -1,0 +1,26 @@
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col col-md-4">
+            <h3><%= user_profile.name%></h3>
+            <h3><%= user_profile.email%></h3>
+        </div>
+        <div class="col col-md-8">
+            <h3 class="text-center">Update details</h3>
+            <form action="/users/update-details/<%= user_profile.id %>" method="POST">
+                <div class="form-group">
+                    <h4 >Name: </h4>
+                    <input type="text" class="form-control" name="name" placeholder="Update Name" value="<%= user_profile.name %>" required>
+                </div>
+                <div class="form-group">
+                    <h4 >Email: </h4>
+                    <input type="text" class="form-control" name="email" placeholder="Update Email" value="<%= user_profile.email %>" required>
+                </div>
+                <div class="form-group">
+                    <h4 >Password: </h4>
+                    <input type="password" class="form-control" name="password" placeholder="Either Update or enter old password" required>
+                </div>
+                <button class="btn btn-success btn-block">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
