@@ -1,0 +1,14 @@
+<div class="container m-2 p-2" style="border: 1px solid grey;">
+    <h3 style="text-transform: capitalize;"><%= post.user.name %></h3>
+
+    <h5 class="ml-5"><%= post.content %></h5>
+
+    <% if(locals.user && locals.user.id == post.user.id){ %>
+    <small>
+        <a href="/posts/destroy/<%= post.id %>" class="btn btn-danger btn-sm "> Delete Post</a>
+    </small>
+    <% } %>
+   
+    <%- include('_comment') -%>
+
+ </div>

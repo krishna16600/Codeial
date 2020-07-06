@@ -1,5 +1,7 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const User = require('../models/user');
+
 
 module.exports.posts = (req,res) => {
    
@@ -12,10 +14,15 @@ module.exports.posts = (req,res) => {
         }
     }) 
     .exec((err,posts) => {
-        return res.render('home', {
-            title: 'Codeial | News-Feed',
-            posts: posts
+
+        User.find({} , (err,users) => {
+            return res.render('home', {
+                title: 'Codeial | News-Feed',
+                posts: posts,
+                all_users: users
+            })
         })
+       
     })
 
 }
