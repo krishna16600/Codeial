@@ -6,6 +6,8 @@ const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 const session = require('express-session');
 const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 
 //mongo store requires an argument(session) because we need to put session information in the database 
 const MongoStore = require('connect-mongo')(session);
@@ -72,6 +74,8 @@ app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
 
+app.use(flash());
+app.use(customMware.setFlash);
 
 //use express router
 app.use('/', require('./routes'))
