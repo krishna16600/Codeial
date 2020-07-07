@@ -1,17 +1,23 @@
-<div class="container mt-2">
-    <h5>Comments: </h5>
+<div class="container">
+    <h5 class="card-title">Comments: </h5>
   
         <% for(comment of post.comments) { %>
-         <div class="container d-flex">
-             <p><%= comment.user.name %>: </p>
-             <p class="ml-3"> <%= comment.content %></p>
-             <p>
+         <div class="row">
+            <div class="col col-sm-12 col-md-6 col-lg-10">
+                    <div class="container d-flex">
+                        <p><%= comment.user.name %>: </p>
+                        <p class="ml-2"> <%= comment.content %></p>
+                    </div>
+            </div>
+             
+            <div class="col col-sm-12 col-md-6 col-lg-2">
                  <% if(locals.user && locals.user.id == comment.user.id || locals.user.id == post.user.id){ %>
                      <small>
-                         <a href="/comments/destroy/<%= comment.id %>" class="btn btn-danger btn-sm "> Delete Comment</a>
+                         <a href="/comments/destroy/<%= comment.id %>" class="badge badge-danger mt-1"> Delete</a>
                      </small>
                      <% } %>
-             </p>
+            </div>
+            
          </div>
          <% } %>
    
@@ -19,9 +25,11 @@
 
  <!--form for comments-->
 
-     <div class="container-fluid  mt-2 d-flex ">
-         <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" class="rounded-circle" width="40px" height="40px" alt="Image" class="mr-3">
-         <div class="container">
+     <div class="row mt-1 ml-1 ">
+         <div class="col col-sm-6 col-md-2 col-lg-1">
+             <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" class="rounded-circle" width="40px" height="40px" alt="Image" class="mr-3">
+        </div>
+         <div class="col col-sm-6 col-md-10 col-lg-10">
              <form action="/comments/create" method="POST">
                  <div class="form-group">
                      <input class="form-control" type="text" name="content" placeholder="Add a comment.." required>
@@ -29,7 +37,7 @@
                  <div class="form-group">
                      <input class="form-control" type="hidden" name="post" value="<%= post._id %>">
                  </div>
-                 <button class="btn btn-success btn-block btn-sm">Add comment</button>
+                 <button class="btn btn-outline-success btn-block btn-sm">Add comment</button>
              </form>
           </div>
      </div>

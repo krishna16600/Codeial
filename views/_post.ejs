@@ -1,14 +1,19 @@
-<div class="container m-2 p-2" style="border: 1px solid grey;">
-    <h3 style="text-transform: capitalize;"><%= post.user.name %></h3>
 
-    <h5 class="ml-5"><%= post.content %></h5>
-
-    <% if(locals.user && locals.user.id == post.user.id){ %>
-    <small>
-        <a href="/posts/destroy/<%= post.id %>" class="btn btn-danger btn-sm "> Delete Post</a>
-    </small>
-    <% } %>
-   
+ <div class="card text-white bg-dark mb-3" style=" box-shadow: 2px 8px 16px -4px black;;">
+     <div class="card-header d-flex justify-content-start">
+        <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" class=" mt-2" width="35px" height="35px" alt="Image">
+        <h4  style="text-transform: capitalize; margin-top: auto; margin-left: 10px;"><%= post.user.name %> <small class="text-muted" style="font-size: 20px; text-transform: none;">made a new post.</small></h4>
+    </div>
+    <div class="card-body d-flex justify-content-between">
+         <h5 class="card-title"><%= post.content %></h5>
+         <% if(locals.user && locals.user.id == post.user.id){ %>
+            <small>
+                <a href="/posts/destroy/<%= post.id %>" class="btn btn-outline-danger btn-sm "> Delete Post</a>
+            </small>
+            <% } %>
+    </div>
+    <div class="card-body">
     <%- include('_comment') -%>
 
- </div>
+   </div>
+</div>
