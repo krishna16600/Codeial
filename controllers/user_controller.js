@@ -102,15 +102,17 @@ module.exports.updateDetails = async (req,res) => {
 
                 if(req.file){
 
-                    if(user.avatar){
+                    console.log('file exists ' , fs.existsSync(path.join(__dirname , '..' , user.avatar)));
+                    
+                    if(user.avatar && fs.existsSync(path.join(__dirname , '..' , user.avatar))){
                         fs.unlinkSync(path.join(__dirname,'..',user.avatar));
                     }
                    
-                    user.avatar = User.avatarPath+'/'+user.avatar;
-                    user.save();
-                    req.flash('success', 'Profile Updated');
-                    return res.redirect('back');
+                    user.avatar = User.avatarPath+'/'+req.file.filename;
                 }
+                user.save();
+                req.flash('success', 'Profile Updated');
+                return res.redirect('back');
             })
         }catch(err) {
             console.log(err);
@@ -121,3 +123,4 @@ module.exports.updateDetails = async (req,res) => {
         res.status(401).send('Unauthorized');
     }
 }
+//avatar-1594404256352
