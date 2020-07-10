@@ -2,11 +2,15 @@
     <div class="row">
         <div class="col col-md-4">
             <h3><%= user_profile.name%></h3>
-            <h3><%= user_profile.email%></h3>
+            <% if(user_profile.avatar!=null) { %>
+            <img src="<%= user_profile.avatar %>" alt="" width="100">
+            <% } else { %> 
+                <img src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" alt="" width="100">
+            <% } %>
         </div>
         <div class="col col-md-8">
             <h3 class="text-center">Update details</h3>
-            <form action="/users/update-details/<%= user_profile.id %>" method="POST">
+            <form action="/users/update-details/<%= user_profile.id %>" enctype="multipart/form-data" method="POST">
                 <div class="form-group">
                     <h4 >Name: </h4>
                     <input type="text" class="form-control" name="name" placeholder="Update Name" value="<%= user_profile.name %>" required>
@@ -14,6 +18,10 @@
                 <div class="form-group">
                     <h4 >Email: </h4>
                     <input type="text" class="form-control" name="email" placeholder="Update Email" value="<%= user_profile.email %>" required>
+                </div>
+                <div class="form-group">
+                    <h4 >Profile Picture: </h4>
+                    <input type="file" class="form-control" name="avatar" placeholder="Profile picture">
                 </div>
                 <div class="form-group">
                     <h4 >Password: </h4>

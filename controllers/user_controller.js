@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const path = require('path');
+const fs = require('fs');
 
 module.exports.profile = function(req,res){
 
@@ -85,11 +87,36 @@ module.exports.updateProfile = (req, res) => {
     })
 }
 
-module.exports.updateDetails = (req,res) => {
+module.exports.updateDetails = async (req,res) => {
     if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id , req.body, (err, user) => {
+      
+        try{    
+            let user = await User.findById(req.params.id);
+
+            User.updateAvatar( req, res, function(err){
+                if(err){console.log(err);}
+
+                user.name = req.body.name;
+                user.email = req.body.email;
+                user.password = req.body.password;
+
+                if(req.file){
+
+                    if(user.avatar){
+                        fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+                    }
+                   
+                    user.avatar = User.avatarPath+'/'+user.avatar;
+                    user.save();
+                    req.flash('success', 'Profile Updated');
+                    return res.redirect('back');
+                }
+            })
+        }catch(err) {
+            console.log(err);
             return res.redirect('back');
-        })
+        }
+        
     } else{
         res.status(401).send('Unauthorized');
     }

@@ -37,9 +37,11 @@ app.use(cookieParser());
 
 //use static files.. css and js
 
+
 app.use(express.static("./assets"));
 app.use(expressLayouts);
 
+app.use('/uploads', express.static(__dirname + '/uploads'));
 //extract styles and css from subpages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
