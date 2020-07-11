@@ -1,7 +1,8 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const User = require('../models/user');
-
+const path = require('path');
+const fs = require('fs');
 
 module.exports.posts =  async (req,res) => {
    
@@ -32,13 +33,26 @@ module.exports.create = async (req,res) => {
   
 
     try {
-        await Post.create({
-            content: req.body.content,
-            user: req.user._id
+       
+        Post.uploadPost(req, res, (err) => {
+            if(err){ console.log('*************** Error in multer ************', err);}
+
+            let post = new Post();
+
+            post.content = req.body.content;
+            post.user = req.user._id;
+            
+            if(req.file){
+
+               post.picture = Post.postPath+'/'+req.file.filename;
+            }
+
+             Post.create(post);
+            req.flash('success', "Post published!");
+            return res.redirect('back');
         })
         
-        req.flash('success', "Post published!");
-        return res.redirect('back');
+       
     } catch(err){
         req.flash('error', err);
         console.log(`Error in creating post, ${err}`);
