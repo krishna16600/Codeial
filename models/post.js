@@ -35,7 +35,7 @@ let storage = multer.diskStorage({
     }
 })
 
-postSchema.statics.uploadPost = multer({storage: storage});
+postSchema.statics.uploadPost = multer({storage: storage}).single('picture');
 postSchema.statics.postPath = POST_PATH;
 
 const Post = mongoose.model('Post', postSchema);
