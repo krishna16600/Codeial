@@ -99,11 +99,11 @@ module.exports.updateDetails = async (req,res) => {
                 user.name = req.body.name;
                 user.email = req.body.email;
                 user.password = req.body.password;
-
+                user.bio = req.body.bio;
                 if(req.file){
 
                     console.log('file exists ' , fs.existsSync(path.join(__dirname , '..' , user.avatar)));
-                    
+
                     if(user.avatar && fs.existsSync(path.join(__dirname , '..' , user.avatar))){
                         fs.unlinkSync(path.join(__dirname,'..',user.avatar));
                     }
