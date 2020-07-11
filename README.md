@@ -9,7 +9,7 @@ Functionalities as of now:
 
 1. Sign Up / Sign In.
 2. News feed.
-3. Post on your wall.
+3. Post on your wall, add photos while posting your thoughts.
 4. Comment on any post.
 
 Tech Stack: node.js/express/mongoDB/ejs
