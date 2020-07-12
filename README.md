@@ -12,4 +12,11 @@ Functionalities as of now:
 3. Post on your wall, add photos while posting your thoughts.
 4. Comment on any post.
 
+soon to add features:-
+1. Authentication using JWT
+2. Node mailer
+3. Likes and Friends
+4. Chatting engine
+
+
 Tech Stack: node.js/express/mongoDB/ejs
