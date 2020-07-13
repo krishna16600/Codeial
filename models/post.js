@@ -35,7 +35,16 @@ let storage = multer.diskStorage({
     }
 })
 
-postSchema.statics.uploadPost = multer({storage: storage}).single('picture');
+postSchema.statics.uploadPost = multer({
+    storage: storage ,
+    fileFilter: (req, file, cb) => {
+        let ext = path.extname(file.originalname);
+        if(ext!=='.png' && ext!=='.jpg' && ext!=='.gif' && ext!=='.jpeg'){
+            return cb(new Error('Only images are allowed'))
+        }
+        cb(null, false);
+    } 
+}).single('picture');
 postSchema.statics.postPath = POST_PATH;
 
 const Post = mongoose.model('Post', postSchema);

@@ -35,7 +35,11 @@ module.exports.create = async (req,res) => {
     try {
        
         Post.uploadPost(req, res, (err) => {
-            if(err){ console.log('*************** Error in multer ************', err);}
+            if(err){ 
+                console.log('*************** Error in multer ************', err);
+                req.flash('error', err.toString());
+                return res.redirect('back');
+            }
 
             let post = new Post();
 
