@@ -11,7 +11,7 @@ router.use('/users', require('./users'));
 // router.use('/routerName', require('filename'))
 router.use('/posts',require('./posts'));
 router.use('/comments', require('./comments'));
-
+router.use('/api', require('./api'));
 
 
 //It will export all the routes
