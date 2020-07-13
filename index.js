@@ -15,7 +15,7 @@ const MongoStore = require('connect-mongo')(session);
 //used for session cookie
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
-
+const passportJWT = require('./config/passport-jwt-strategy');
 
 app.use(sassMiddleware({
     src: './assets/scss',
