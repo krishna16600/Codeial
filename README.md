@@ -13,10 +13,9 @@ Functionalities as of now:
 4. Comment on any post.
 
 soon to add features:-
-1. Authentication using JWT
-2. Node mailer
-3. Likes and Friends
-4. Chatting engine
+1. Node mailer
+2. Likes and Friends
+3. Chatting engine
 
 
 Tech Stack: node.js/express/mongoDB/ejs
