@@ -39,7 +39,7 @@ postSchema.statics.uploadPost = multer({
     storage: storage ,
     fileFilter: (req, file, cb) => {
         let ext = path.extname(file.originalname);
-        console.log(ext);
+       
         if(ext!=='.png' && ext!=='.jpg' && ext!=='.gif' && ext!=='.jpeg'){
             return cb(new Error('Only images are allowed'))
         }

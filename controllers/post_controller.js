@@ -48,10 +48,10 @@ module.exports.create = async (req,res) => {
             post.user = req.user._id;
             
             if(req.file){
-                console.log("present file");
+                
                post.picture = Post.postPath+'/'+req.file.filename;
             }
-            console.log(post);
+           
              Post.create(post);
             req.flash('success', "Post published!");
             return res.redirect('back');
