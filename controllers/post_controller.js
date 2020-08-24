@@ -3,6 +3,7 @@ const Comment = require('../models/comment');
 const User = require('../models/user');
 const path = require('path');
 const fs = require('fs');
+const { log } = require('console');
 
 module.exports.posts =  async (req,res) => {
    
@@ -47,10 +48,10 @@ module.exports.create = async (req,res) => {
             post.user = req.user._id;
             
             if(req.file){
-
+                console.log("present file");
                post.picture = Post.postPath+'/'+req.file.filename;
             }
-
+            console.log(post);
              Post.create(post);
             req.flash('success', "Post published!");
             return res.redirect('back');

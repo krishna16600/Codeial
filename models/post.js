@@ -39,10 +39,11 @@ postSchema.statics.uploadPost = multer({
     storage: storage ,
     fileFilter: (req, file, cb) => {
         let ext = path.extname(file.originalname);
+        console.log(ext);
         if(ext!=='.png' && ext!=='.jpg' && ext!=='.gif' && ext!=='.jpeg'){
             return cb(new Error('Only images are allowed'))
         }
-        cb(null, false);
+        return cb(null, true);
     } 
 }).single('picture');
 postSchema.statics.postPath = POST_PATH;
